@@ -1,0 +1,95 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <div class="card shadow p-4">
+        <form [formGroup]="suggform">
+
+          <!-- Name -->
+          <div class="mb-3">
+            <label class="form-label fw-bold">Name</label>
+            <input type="text"
+                   formControlName="name"
+                   class="form-control"
+                   placeholder="Enter name">
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="suggform.get('name')?.touched && suggform.get('name')?.errors?.['required']">
+              Name required
+            </div>
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="suggform.get('name')?.touched && suggform.get('name')?.errors?.['maxlength']">
+              Name must be at most 10 characters long
+            </div>
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="suggform.get('name')?.touched && suggform.get('name')?.errors?.['pattern']">
+              Name's first letter must be uppercase
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label class="form-label fw-bold">Description</label>
+            <input type="text"
+                   formControlName="description"
+                   class="form-control"
+                   placeholder="Enter description">
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="description?.touched && description?.errors?.['required']">
+              Description required
+            </div>
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="description?.touched && description?.errors?.['minlength']">
+              Description must be at least 10 characters long
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="mb-3">
+            <label class="form-label fw-bold">Category</label>
+            <select class="form-select"
+                    formControlName="categorie">
+              <option value="">Open this select menu</option>
+              <option *ngFor="let c of categories" [value]="c">{{c}}</option>
+            </select>
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="suggform.get('categorie')?.touched && suggform.get('categorie')?.errors?.['required']">
+              Category required
+            </div>
+          </div>
+
+          <!-- Status -->
+          <div class="mb-4">
+            <label class="form-label fw-bold">Status</label>
+            <select class="form-select"
+                    formControlName="status">
+              <option value="">Open this select menu</option>
+              <option *ngFor="let s of status" [value]="s">{{s}}</option>
+            </select>
+
+            <div class="alert alert-danger mt-2 py-1"
+                 *ngIf="suggform.get('status')?.touched && suggform.get('status')?.errors?.['required']">
+              Status required
+            </div>
+          </div>
+
+          <!-- Button -->
+          <div class="d-grid">
+            <button class="btn btn-primary btn-lg"
+                    [disabled]="suggform.invalid"
+                    (click)="add()">
+              Save
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

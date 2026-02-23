@@ -1,0 +1,96 @@
+<!-- Search bar -->
+<div class="container my-4">
+    <div class="input-group input-group-lg shadow-sm">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="🔍 Search suggestions..." />
+        <button class="btn btn-primary" type="button">
+            Search
+        </button>
+    </div>
+</div>
+
+<!-- Suggestions cards -->
+<div class="container">
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4" *ngFor="let suggestion of searchbyTitle()">
+            <div class="card h-100 shadow-sm suggestion-card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">
+                        {{ suggestion.title }}
+                    </h5>
+
+                    <p class="text-muted small">
+                        {{ suggestion.description }}
+                    </p>
+
+                    <span class="badge bg-info mb-2">
+                        {{ suggestion.category }}
+                    </span>
+
+                    <p class="small mb-1">
+                        {{ suggestion.date | date }}
+                    </p>
+
+                    <span class="badge" [ngClass]="{
+              'bg-success': suggestion.status === 'acceptee',
+              'bg-warning text-dark': suggestion.status === 'en_attente',
+              'bg-secondary': suggestion.status !== 'acceptee' && suggestion.status !== 'en_attente'
+            }">
+                        {{ suggestion.status }}
+                    </span>
+
+                    <p class="mt-2">❤️ {{ suggestion.nbLikes }}</p>
+
+                    <div *ngIf="suggestion.status === 'acceptee' || suggestion.status === 'en_attente'"
+                        class="d-flex gap-2">
+                        <button class="btn btn-outline-primary btn-sm" (click)="onClick(suggestion)">
+                            Like
+                        </button>
+
+                        <button class="btn btn-outline-danger btn-sm" (click)="addToFavoris(suggestion)">
+                            Favoris
+                        </button>
+
+                        <button class="btn btn-outline-danger btn-sm" (click)="delete(suggestion.id)" >delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Favorites -->
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Liste des favoris</h2>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Category</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let suggestion of favoris">
+                    <td class="fw-bold">{{ suggestion.title }}</td>
+                    <td class="text-muted">{{ suggestion.description }}</td>
+                    <td>
+                        <span class="badge bg-success">
+                            {{ suggestion.status }}
+                        </span>
+                    </td>
+                    <td>{{ suggestion.category }}</td>
+                    <td class="text-center">
+                        <button (click)="remove(suggestion)" class="btn btn-sm btn-outline-danger">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
