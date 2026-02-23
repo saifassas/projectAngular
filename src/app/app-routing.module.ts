@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ListSuggestionsComponent } from './list-suggestions/list-suggestions.component';
 import { AddFormComponent } from './add-form/add-form.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { UpdateComponent } from './update/update.component';
 
 const r:Routes =[
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -12,6 +13,7 @@ const r:Routes =[
   {path:'list',component:ListSuggestionsComponent},
   {path:'add',component:AddFormComponent},
   {path:'annonce',loadChildren:()=>import('./annonce/annonce-module.module').then(m=>m.AnnonceModuleModule)},
+  {path:'update/:ide',component:UpdateComponent},
   {path:'**',component:NotfoundComponent}
 ]
 

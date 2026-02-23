@@ -16,6 +16,7 @@ import { ListAnnonceComponent } from './annonce/list-annonce/list-annonce.compon
 import { AddAnnonceComponent } from './annonce/add-annonce/add-annonce.component';
 import { AnnonceModuleModule } from './annonce/annonce-module.module';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { UpdateComponent } from './update/update.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
     HomeComponent,
     ListSuggestionsComponent,
     NotfoundComponent,
-    AddFormComponent
+    AddFormComponent,
+    UpdateComponent
    
   ],
   imports: [
