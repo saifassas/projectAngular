@@ -55,6 +55,7 @@
                     <div class="d-flex gap-2">
                         <button class="btn btn-outline-danger btn-sm" (click)="delete(suggestion.id)">delete</button>
                         <button class="btn btn-outline-secondary btn-sm" [routerLink]="['/update',suggestion.id]" >edit</button>
+                        <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/details',suggestion.id]" >details</button>
                     </div>
                 </div>
             </div>
